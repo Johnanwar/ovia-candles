@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components';
+import { Button } from '@/components/common';
 import { useCart } from '@/hooks';
 import { useTranslations } from 'next-intl';
 import { Product } from '@/types';

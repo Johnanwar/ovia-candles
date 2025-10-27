@@ -1,10 +1,5 @@
-import { Header } from '@/components/Header';
-import { Breadcrumb } from '@/components/Breadcrumb';
-import { ProductImages } from '@/components/ProductImages';
-import { ProductInfo } from '@/components/ProductInfo';
-import { ProductSpecs } from '@/components/ProductSpecs';
-import { StockInfo } from '@/components/StockInfo';
-import { ProductTags } from '@/components/ProductTags';
+import { Header, Breadcrumb } from '@/components/layout';
+import { ProductImages, ProductInfo, ProductSpecs, StockInfo, ProductTags } from '@/components/products';
 import { getProductById } from '@/lib/productUtils';
 import { notFound } from 'next/navigation';
 

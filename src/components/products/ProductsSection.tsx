@@ -1,6 +1,6 @@
 'use client';
 
-import { ProductCard } from '@/components/ProductCard';
+import { ProductCard } from './ProductCard';
 import { sampleProducts } from '@/lib/products';
 
 interface ProductsSectionProps {

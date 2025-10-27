@@ -1,6 +1,6 @@
 'use client';
 
-import { LanguageSwitcher, CartIcon } from '@/components';
+import { LanguageSwitcher, CartIcon } from '@/components/common';
 import { useCart } from '@/hooks';
 import Link from 'next/link';
 

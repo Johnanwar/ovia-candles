@@ -1,5 +1,5 @@
-import { Header } from '@/components/Header';
-import { ProductsSection } from '@/components/ProductsSection';
+import { Header } from '@/components/layout';
+import { ProductsSection } from '@/components/products';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
