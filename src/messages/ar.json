@@ -1,0 +1,44 @@
+{
+  "common": {
+    "addToCart": "أضف إلى السلة",
+    "viewDetails": "عرض التفاصيل",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "total": "المجموع",
+    "cart": "السلة",
+    "checkout": "الدفع",
+    "continueShopping": "متابعة التسوق",
+    "remove": "إزالة",
+    "empty": "فارغ",
+    "loading": "جاري التحميل...",
+    "error": "خطأ",
+    "success": "نجح"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "products": "المنتجات",
+    "about": "حول",
+    "contact": "اتصل بنا",
+    "cart": "السلة"
+  },
+  "product": {
+    "title": "المنتجات",
+    "description": "اكتشف مجموعتنا الرائعة من المنتجات",
+    "outOfStock": "نفد المخزون",
+    "inStock": "متوفر",
+    "rating": "التقييم",
+    "reviews": "التقييمات"
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلتك فارغة",
+    "subtotal": "المجموع الفرعي",
+    "tax": "الضريبة",
+    "shipping": "الشحن",
+    "total": "المجموع"
+  },
+  "footer": {
+    "allRightsReserved": "جميع الحقوق محفوظة",
+    "followUs": "تابعنا"
+  }
+}
