@@ -1,7 +1,5 @@
-import { ProductCard, LanguageSwitcher, CartIcon } from '@/components';
-import { sampleProducts } from '@/lib/products';
-import { useTranslations } from 'next-intl';
-import { useCart } from '@/hooks';
+import { Header } from '@/components/Header';
+import { ProductsSection } from '@/components/ProductsSection';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -9,28 +7,11 @@ interface HomePageProps {
 
 export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
- 
   const isRTL = locale === 'ar';
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900">
-              Ovia  Candles
-              </h1>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <LanguageSwitcher currentLocale={locale} />
-        
-            </div>
-          </div>
-        </div>
-      </header>
+      <Header locale={locale} />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-20">
@@ -47,29 +28,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
-      {/* Products Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
-            {isRTL ? 'المنتجات' : 'Products'}
-            </h3>
-            <p className="text-lg text-gray-600">
-              {isRTL ? 'اكتشف مجموعتنا الرائعة من المنتجات' : 'Discover our amazing collection of products'}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {sampleProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                locale={locale}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProductsSection locale={locale} />
 
       {/* Features Section */}
       <section className="bg-white py-16">
