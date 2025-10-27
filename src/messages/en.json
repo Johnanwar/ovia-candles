@@ -12,7 +12,8 @@
     "empty": "Empty",
     "loading": "Loading...",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "outOfStock": "Out of Stock"
   },
   "navigation": {
     "home": "Home",
@@ -27,7 +28,20 @@
     "outOfStock": "Out of Stock",
     "inStock": "In Stock",
     "rating": "Rating",
-    "reviews": "Reviews"
+    "reviews": "Reviews",
+    "specifications": "Product Specifications",
+    "size": "Size",
+    "dimensions": "Dimensions",
+    "weight": "Weight",
+    "burnTime": "Burn Time",
+    "fragrance": "Fragrance",
+    "waxType": "Wax Type",
+    "wickType": "Wick Type",
+    "madeIn": "Made in",
+    "stockStatus": "Stock Status",
+    "tags": "Tags",
+    "wishlist": "Wishlist",
+    "addToCart": "Add to Cart"
   },
   "cart": {
     "title": "Shopping Cart",

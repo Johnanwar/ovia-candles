@@ -2,6 +2,7 @@
 
 import { Button } from '@/components';
 import { useCart } from '@/hooks';
+import { useTranslations } from 'next-intl';
 import { Product } from '@/types';
 import Link from 'next/link';
 
@@ -11,6 +12,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard = ({ product, locale }: ProductCardProps) => {
+  const t = useTranslations('common');
   const { addToCart } = useCart();
   const isRTL = locale === 'ar';
   const productName = isRTL ? product.nameAr : product.name;
@@ -65,11 +67,11 @@ export const ProductCard = ({ product, locale }: ProductCardProps) => {
             onClick={handleAddToCart}
             disabled={!product.inStock}
           >
-            {product.inStock ? (isRTL ? 'أضف إلى السلة' : 'Add to Cart') : (isRTL ? 'نفد المخزون' : 'Out of Stock')}
+            {product.inStock ? t('addToCart') : t('outOfStock')}
           </Button>
           <Link href={`/${locale}/products/${product.id}`}>
             <Button variant="outline" size="sm">
-              {isRTL ? 'عرض التفاصيل' : 'View Details'}
+              {t('viewDetails')}
             </Button>
           </Link>
         </div>

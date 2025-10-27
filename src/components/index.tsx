@@ -1,11 +1,18 @@
-// Reusable UI components
+/**
+ * Shared UI Components
+ * 
+ * This file exports reusable components used across the application:
+ * - Button: Styled button component with variants (primary, secondary, outline)
+ * - Card: Container component with shadow and padding
+ * - LanguageSwitcher: Toggle between English and Arabic
+ * - CartIcon: Shopping cart icon with item count badge
+ * 
+ * Note: ProductCard component has been moved to src/components/ProductCard.tsx
+ */
 'use client';
 import { ReactNode } from 'react';
 import Link from 'next/link';
 import { cn } from '@/utils';
-import { Product } from '@/types';
-import { useCart } from '@/hooks';
-import { useTranslations } from 'next-intl';
 
 interface ButtonProps {
   children: ReactNode;
@@ -65,78 +72,6 @@ export const Card = ({ children, className }: CardProps) => {
     <div className={cn('bg-white rounded-lg shadow-md p-6', className)}>
       {children}
     </div>
-  );
-};
-
-// Product Card Component
-interface ProductCardProps {
-  product: Product;
-  locale: string;
-}
-
-export const ProductCard = ({ product, locale }: ProductCardProps) => {
-  const t = useTranslations('common');
-  const { addToCart } = useCart();
-  
-  const isRTL = locale === 'ar';
-  const productName = isRTL ? product.nameAr : product.name;
-
-  return (
-    <Card className="group hover:shadow-lg transition-shadow">
-      <div className="aspect-square overflow-hidden rounded-lg bg-gray-100 relative">
-        <img
-          src={product.image}
-          alt={productName}
-          className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
-        />
-        {!product.inStock && (
-          <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium">
-            {isRTL ? 'نفد المخزون' : 'Out of Stock'}
-          </div>
-        )}
-      </div>
-      
-      <div className="mt-4">
-        <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 mb-3">
-          {productName}
-        </h3>
-        
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-1">
-            <span className="text-lg font-bold text-gray-900">
-              {product.price.toLocaleString()} {product.currency}
-            </span>
-            {product.originalPrice && (
-              <span className="text-sm text-gray-500 line-through">
-                {product.originalPrice.toLocaleString()} {product.currency}
-              </span>
-            )}
-          </div>
-          
-          <div className="flex items-center space-x-1">
-            <span className="text-yellow-400">★</span>
-            <span className="text-sm text-gray-600">{product.rating}</span>
-          </div>
-        </div>
-        
-        <div className="flex space-x-2">
-          <Button
-            variant="primary"
-            size="sm"
-            className="flex-1"
-            onClick={() => addToCart(product)}
-            disabled={!product.inStock}
-          >
-            {product.inStock ? t('addToCart') : (isRTL ? 'نفد المخزون' : 'Out of Stock')}
-          </Button>
-          <Link href={`/${locale}/products/${product.id}`}>
-            <Button variant="outline" size="sm">
-              {t('viewDetails')}
-            </Button>
-          </Link>
-        </div>
-      </div>
-    </Card>
   );
 };
 

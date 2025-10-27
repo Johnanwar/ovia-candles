@@ -12,7 +12,8 @@
     "empty": "فارغ",
     "loading": "جاري التحميل...",
     "error": "خطأ",
-    "success": "نجح"
+    "success": "نجح",
+    "outOfStock": "نفد المخزون"
   },
   "navigation": {
     "home": "الرئيسية",
@@ -27,7 +28,20 @@
     "outOfStock": "نفد المخزون",
     "inStock": "متوفر",
     "rating": "التقييم",
-    "reviews": "التقييمات"
+    "reviews": "التقييمات",
+    "specifications": "مواصفات المنتج",
+    "size": "الحجم",
+    "dimensions": "الأبعاد",
+    "weight": "الوزن",
+    "burnTime": "وقت الاحتراق",
+    "fragrance": "العطر",
+    "waxType": "نوع الشمع",
+    "wickType": "نوع الفتيل",
+    "madeIn": "مصنوع في",
+    "stockStatus": "حالة المخزون",
+    "tags": "العلامات",
+    "wishlist": "المفضلة",
+    "addToCart": "أضف إلى السلة"
   },
   "cart": {
     "title": "سلة التسوق",

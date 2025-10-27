@@ -2,6 +2,7 @@
 
 import { Button } from '@/components';
 import { useCart } from '@/hooks';
+import { useTranslations } from 'next-intl';
 import { Product } from '@/types';
 
 interface ProductActionsProps {
@@ -10,8 +11,8 @@ interface ProductActionsProps {
 }
 
 export const ProductActions = ({ product, locale }: ProductActionsProps) => {
+  const t = useTranslations('product');
   const { addToCart } = useCart();
-  const isRTL = locale === 'ar';
 
   const handleAddToCart = () => {
     addToCart(product);
@@ -31,10 +32,10 @@ export const ProductActions = ({ product, locale }: ProductActionsProps) => {
         onClick={handleAddToCart}
         disabled={!product.inStock}
       >
-        {product.inStock ? (isRTL ? 'أضف إلى السلة' : 'Add to Cart') : (isRTL ? 'نفد المخزون' : 'Out of Stock')}
+        {product.inStock ? t('addToCart') : t('outOfStock')}
       </Button>
       <Button variant="outline" size="lg" onClick={handleWishlist}>
-        {isRTL ? 'المفضلة' : 'Wishlist'}
+        {t('wishlist')}
       </Button>
     </div>
   );
