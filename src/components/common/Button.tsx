@@ -1,6 +1,7 @@
 /**
  * Button Component
  * Styled button with variants (primary, secondary, outline) and sizes (sm, md, lg)
+ * Uses theme system for consistent styling
  */
 'use client';
 import { ReactNode } from 'react';
@@ -23,12 +24,12 @@ export const Button = ({
   onClick,
   disabled = false,
 }: ButtonProps) => {
-  const baseClasses = 'font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
+  const baseClasses = 'font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
   
   const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500',
-    secondary: 'bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500',
-    outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-blue-500',
+    primary: 'bg-[var(--color-primary)] text-[var(--color-text-inverse)] hover:bg-[var(--color-primary-hover)] focus:ring-[var(--color-primary)] active:bg-[var(--color-primary-active)] shadow-sm hover:shadow-md',
+    secondary: 'bg-[var(--color-secondary)] text-[var(--color-text-inverse)] hover:bg-[var(--color-secondary-hover)] focus:ring-[var(--color-secondary)] active:bg-[var(--color-secondary-active)] shadow-sm hover:shadow-md',
+    outline: 'border border-[var(--color-border)] text-[var(--color-text)] hover:bg-[var(--color-background-secondary)] focus:ring-[var(--color-primary)] active:bg-[var(--color-background-tertiary)]',
   };
   
   const sizeClasses = {
@@ -43,7 +44,6 @@ export const Button = ({
         baseClasses,
         variantClasses[variant],
         sizeClasses[size],
-        disabled && 'opacity-50 cursor-not-allowed',
         className
       )}
       onClick={onClick}

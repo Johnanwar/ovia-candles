@@ -9,9 +9,9 @@ interface ProductDetailsPageProps {
 
 export default async function ProductDetailsPage({ params }: ProductDetailsPageProps) {
   const { locale, id } = await params;
-  
+
   const product = getProductById(id);
-  
+
   if (!product) {
     notFound();
   }
@@ -19,7 +19,7 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
   const productName = locale === 'ar' ? product.nameAr : product.name;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[var(--color-background)]">
       <Header locale={locale} />
       <Breadcrumb locale={locale} productName={productName} />
 

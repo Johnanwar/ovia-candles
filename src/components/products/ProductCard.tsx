@@ -1,3 +1,7 @@
+/**
+ * Product Card Component
+ * Displays product information with theme-aware styling
+ */
 'use client';
 
 import { Button } from '@/components/common';
@@ -22,40 +26,40 @@ export const ProductCard = ({ product, locale }: ProductCardProps) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 group hover:shadow-lg transition-shadow">
-      <div className="aspect-square overflow-hidden rounded-lg bg-gray-100 relative">
+    <div className="bg-[var(--color-background)] rounded-lg border border-[var(--color-border)] p-6 group hover:shadow-lg hover:border-[var(--color-primary)] transition-all duration-300 hover:-translate-y-1">
+      <div className="aspect-square overflow-hidden rounded-lg bg-[var(--color-background-secondary)] relative">
         <img
           src={product.image}
           alt={productName}
           className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
         />
         {!product.inStock && (
-          <div className="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-medium">
-            {isRTL ? 'نفد المخزون' : 'Out of Stock'}
+          <div className="absolute top-2 right-2 bg-[var(--color-error)] text-[var(--color-text-inverse)] px-2 py-1 rounded text-xs font-medium">
+            {t('outOfStock')}
           </div>
         )}
       </div>
       
       <div className="mt-4">
-        <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 mb-3">
+        <h3 className="text-lg font-semibold text-[var(--color-text)] line-clamp-2 mb-3">
           {productName}
         </h3>
         
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center space-x-1">
-            <span className="text-lg font-bold text-gray-900">
+            <span className="text-lg font-bold text-[var(--color-text)]">
               {product.price.toLocaleString()} {product.currency}
             </span>
             {product.originalPrice && (
-              <span className="text-sm text-gray-500 line-through">
+              <span className="text-sm text-[var(--color-text-tertiary)] line-through">
                 {product.originalPrice.toLocaleString()} {product.currency}
               </span>
             )}
           </div>
           
           <div className="flex items-center space-x-1">
-            <span className="text-yellow-400">★</span>
-            <span className="text-sm text-gray-600">{product.rating}</span>
+            <span className="text-[var(--color-warning)]">★</span>
+            <span className="text-sm text-[var(--color-text-secondary)]">{product.rating}</span>
           </div>
         </div>
         

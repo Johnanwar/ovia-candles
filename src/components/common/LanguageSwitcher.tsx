@@ -1,6 +1,7 @@
 /**
  * Language Switcher Component
  * Toggle between English and Arabic languages
+ * Uses theme system for consistent styling
  */
 'use client';
 import { Button } from './Button';
@@ -24,7 +25,7 @@ export const LanguageSwitcher = ({ currentLocale }: LanguageSwitcherProps) => {
       variant="outline"
       size="sm"
       onClick={switchLanguage}
-      className="min-w-[60px]"
+      className="min-w-[60px] hover:scale-105 transition-transform duration-200"
     >
       {isRTL ? 'EN' : 'عربي'}
     </Button>

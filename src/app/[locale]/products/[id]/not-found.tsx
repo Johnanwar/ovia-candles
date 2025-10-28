@@ -10,21 +10,18 @@ export default async function NotFoundPage({ params }: NotFoundPageProps) {
   const isRTL = locale === 'ar';
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="min-h-screen bg-[var(--color-background)] flex items-center justify-center">
       <div className="text-center">
-        <h1 className="text-6xl font-bold text-gray-900 mb-4">404</h1>
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-          {isRTL ? 'المنتج غير موجود' : 'Product Not Found'}
+        <h1 className="text-6xl font-bold text-[var(--color-text)] mb-4">404</h1>
+        <h2 className="text-2xl font-semibold text-[var(--color-text-secondary)] mb-4">
+          {isRTL ? 'الصفحة غير موجودة' : 'Page Not Found'}
         </h2>
-        <p className="text-gray-600 mb-8">
-          {isRTL 
-            ? 'عذراً، المنتج الذي تبحث عنه غير موجود أو تم حذفه.' 
-            : 'Sorry, the product you are looking for does not exist or has been removed.'
-          }
+        <p className="text-[var(--color-text-tertiary)] mb-8">
+          {isRTL ? 'عذراً، الصفحة التي تبحث عنها غير موجودة' : 'Sorry, the page you are looking for does not exist'}
         </p>
         <Link href={`/${locale}`}>
           <Button variant="primary" size="lg">
-            {isRTL ? 'العودة للرئيسية' : 'Back to Home'}
+            {isRTL ? 'العودة للرئيسية' : 'Go Home'}
           </Button>
         </Link>
       </div>

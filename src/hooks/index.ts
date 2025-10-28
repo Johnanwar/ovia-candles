@@ -2,6 +2,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { Cart, CartItem, Product } from '@/types';
+import { useThemeContext } from '@/contexts/ThemeContext';
 
 export const useLocalStorage = <T>(key: string, initialValue: T) => {
   const [storedValue, setStoredValue] = useState<T>(() => {
@@ -31,16 +32,19 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
   return [storedValue, setValue] as const;
 };
 
+// Enhanced theme hook using the new theme system
 export const useTheme = () => {
-  const [theme, setTheme] = useLocalStorage<'light' | 'dark'>('theme', 'light');
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(theme);
-  }, [theme]);
-
-  return { theme, setTheme };
+  const { theme, mode, setMode, toggleTheme } = useThemeContext();
+  
+  return {
+    theme,
+    mode,
+    setMode,
+    toggleTheme,
+    isDark: mode === 'dark',
+    isLight: mode === 'light',
+    colors: theme.colors,
+  };
 };
 
 // Cart functionality hook

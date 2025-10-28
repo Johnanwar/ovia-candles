@@ -1,3 +1,7 @@
+/**
+ * Product Actions Component
+ * Add to Cart and Wishlist buttons with theme-aware styling
+ */
 'use client';
 
 import { Button } from '@/components/common';
@@ -28,13 +32,18 @@ export const ProductActions = ({ product, locale }: ProductActionsProps) => {
       <Button
         variant="primary"
         size="lg"
-        className="flex-1"
+        className="flex-1 hover:scale-105 transition-transform duration-200"
         onClick={handleAddToCart}
         disabled={!product.inStock}
       >
         {product.inStock ? t('addToCart') : t('outOfStock')}
       </Button>
-      <Button variant="outline" size="lg" onClick={handleWishlist}>
+      <Button 
+        variant="outline" 
+        size="lg" 
+        onClick={handleWishlist}
+        className="hover:scale-105 transition-transform duration-200"
+      >
         {t('wishlist')}
       </Button>
     </div>
