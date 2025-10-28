@@ -1,5 +1,6 @@
 import { Header } from '@/components/layout';
 import { ProductsSection } from '@/components/products';
+import { SocialIcons } from '@/components/common';
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
@@ -95,20 +96,10 @@ export default async function HomePage({ params }: HomePageProps) {
             <h5 className="text-lg font-semibold text-[var(--color-text)] mb-4">
               {isRTL ? 'متجر الشموع' : 'Candles Store'}
             </h5>
-            <p className="text-[var(--color-text-secondary)] mb-4">
+            <p className="text-[var(--color-text-secondary)] mb-6">
               {isRTL ? 'جميع الحقوق محفوظة' : 'All rights reserved'}
             </p>
-            <div className="flex justify-center space-x-6">
-              <a href="#" className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors duration-200">
-                {isRTL ? 'فيسبوك' : 'Facebook'}
-              </a>
-              <a href="#" className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors duration-200">
-                {isRTL ? 'تويتر' : 'Twitter'}
-              </a>
-              <a href="#" className="text-[var(--color-text-secondary)] hover:text-[var(--color-primary)] transition-colors duration-200">
-                {isRTL ? 'إنستغرام' : 'Instagram'}
-              </a>
-            </div>
+            <SocialIcons className="justify-center" />
           </div>
         </div>
       </footer>
