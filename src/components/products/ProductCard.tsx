@@ -5,7 +5,7 @@
 'use client';
 
 import { Button } from '@/components/common';
-import { useCart } from '@/hooks';
+import { useCartContext } from '@/contexts/CartContext';
 import { useTranslations } from 'next-intl';
 import { Product } from '@/types';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product, locale }: ProductCardProps) => {
   const t = useTranslations('common');
-  const { addToCart } = useCart();
+  const { addToCart } = useCartContext();
   const isRTL = locale === 'ar';
   const productName = isRTL ? product.nameAr : product.name;
 

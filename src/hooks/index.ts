@@ -1,7 +1,6 @@
 // Custom hooks
 'use client';
-import { useState, useEffect } from 'react';
-import { Cart, CartItem, Product } from '@/types';
+import { useState } from 'react';
 import { useThemeContext } from '@/contexts/ThemeContext';
 
 export const useLocalStorage = <T>(key: string, initialValue: T) => {
@@ -44,74 +43,5 @@ export const useTheme = () => {
     isDark: mode === 'dark',
     isLight: mode === 'light',
     colors: theme.colors,
-  };
-};
-
-// Cart functionality hook
-export const useCart = () => {
-  const [cart, setCart] = useLocalStorage<Cart>('cart', {
-    items: [],
-    total: 0,
-    itemCount: 0,
-  });
-
-  const addToCart = (product: Product, quantity: number = 1) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.items.find(item => item.product.id === product.id);
-      
-      if (existingItem) {
-        const updatedItems = prevCart.items.map(item =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-        return calculateCartTotals({ ...prevCart, items: updatedItems });
-      } else {
-        const newItem: CartItem = { product, quantity };
-        const updatedItems = [...prevCart.items, newItem];
-        return calculateCartTotals({ ...prevCart, items: updatedItems });
-      }
-    });
-  };
-
-  const removeFromCart = (productId: string) => {
-    setCart((prevCart) => {
-      const updatedItems = prevCart.items.filter(item => item.product.id !== productId);
-      return calculateCartTotals({ ...prevCart, items: updatedItems });
-    });
-  };
-
-  const updateQuantity = (productId: string, quantity: number) => {
-    if (quantity <= 0) {
-      removeFromCart(productId);
-      return;
-    }
-
-    setCart((prevCart) => {
-      const updatedItems = prevCart.items.map(item =>
-        item.product.id === productId
-          ? { ...item, quantity }
-          : item
-      );
-      return calculateCartTotals({ ...prevCart, items: updatedItems });
-    });
-  };
-
-  const clearCart = () => {
-    setCart({ items: [], total: 0, itemCount: 0 });
-  };
-
-  const calculateCartTotals = (cart: Cart): Cart => {
-    const total = cart.items.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
-    const itemCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
-    return { ...cart, total, itemCount };
-  };
-
-  return {
-    cart,
-    addToCart,
-    removeFromCart,
-    updateQuantity,
-    clearCart,
   };
 };

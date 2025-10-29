@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout';
 import { ProductsSection } from '@/components/products';
 
 interface ProductsPageProps {
@@ -11,8 +10,6 @@ export default async function ProductsPage({ params }: ProductsPageProps) {
 
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
-      <Header locale={locale} />
-
       {/* Breadcrumb */}
       <div className="bg-[var(--color-background-secondary)] border-b border-[var(--color-border)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">

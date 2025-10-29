@@ -1,4 +1,4 @@
-import { Header, Breadcrumb } from '@/components/layout';
+import { Breadcrumb } from '@/components/layout';
 import { ProductImages, ProductInfo, ProductSpecs, StockInfo, ProductTags } from '@/components/products';
 import { getProductById } from '@/lib/productUtils';
 import { notFound } from 'next/navigation';
@@ -20,7 +20,6 @@ export default async function ProductDetailsPage({ params }: ProductDetailsPageP
 
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
-      <Header locale={locale} />
       <Breadcrumb locale={locale} productName={productName} />
 
       {/* Product Details */}

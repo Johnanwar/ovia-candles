@@ -6,15 +6,21 @@
 'use client';
 
 import { LanguageSwitcher, CartIcon, ThemeSwitcher } from '@/components/common';
-import { useCart } from '@/hooks';
+import { useCartContext } from '@/contexts/CartContext';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
   locale: string;
 }
 
 export const Header = ({ locale }: HeaderProps) => {
-  const { cart } = useCart();
+  const { cart } = useCartContext();
+  const router = useRouter();
+
+  const handleCartClick = () => {
+    router.push(`/${locale}/cart`);
+  };
 
   return (
     <header className="bg-[var(--color-background)] border-b border-[var(--color-border)] shadow-sm sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
@@ -31,7 +37,7 @@ export const Header = ({ locale }: HeaderProps) => {
             <LanguageSwitcher currentLocale={locale} />
             <CartIcon 
               itemCount={cart.itemCount} 
-              onClick={() => {/* TODO: Open cart modal */}} 
+              onClick={handleCartClick} 
             />
           </div>
         </div>

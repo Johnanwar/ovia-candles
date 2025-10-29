@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout';
 import { ProductsSection } from '@/components/products';
 import { SocialIcons } from '@/components/common';
 
@@ -12,8 +11,6 @@ export default async function HomePage({ params }: HomePageProps) {
 
   return (
     <div className="min-h-screen bg-[var(--color-background)]">
-      <Header locale={locale} />
-
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-accent)] text-[var(--color-text-inverse)] py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

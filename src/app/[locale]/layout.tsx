@@ -4,6 +4,8 @@ import "../globals.css";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { CartProvider } from '@/contexts/CartContext';
+import { ClientLayout } from '@/components/layout/ClientLayout';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,9 +39,13 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <NextIntlClientProvider messages={messages}>
-            {children}
-          </NextIntlClientProvider>
+          <CartProvider>
+            <NextIntlClientProvider messages={messages}>
+              <ClientLayout>
+                {children}
+              </ClientLayout>
+            </NextIntlClientProvider>
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

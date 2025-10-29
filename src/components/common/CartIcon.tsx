@@ -26,6 +26,7 @@ export const CartIcon = ({ itemCount, onClick, className = '' }: CartIconProps) 
     setPreviousCount(itemCount);
   }, [itemCount, previousCount]);
 
+
   return (
     <button
       onClick={onClick}
