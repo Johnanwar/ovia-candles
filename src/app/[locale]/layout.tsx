@@ -6,6 +6,7 @@ import { getMessages } from 'next-intl/server';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { CartProvider } from '@/contexts/CartContext';
 import { ClientLayout } from '@/components/layout/ClientLayout';
+import { ToasterWrapper } from '@/components/common/ToasterWrapper';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,13 +40,14 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <CartProvider>
-            <NextIntlClientProvider messages={messages}>
+          <ToasterWrapper />
+          <NextIntlClientProvider messages={messages}>
+            <CartProvider>
               <ClientLayout>
                 {children}
               </ClientLayout>
-            </NextIntlClientProvider>
-          </CartProvider>
+            </CartProvider>
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

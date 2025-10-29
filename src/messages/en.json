@@ -49,7 +49,11 @@
     "subtotal": "Subtotal",
     "tax": "Tax",
     "shipping": "Shipping",
-    "total": "Total"
+    "total": "Total",
+    "added": "added to cart",
+    "addedQuantity": "added to cart",
+    "removed": "removed from cart",
+    "quantityUpdated": "quantity updated to"
   },
   "footer": {
     "allRightsReserved": "All rights reserved",

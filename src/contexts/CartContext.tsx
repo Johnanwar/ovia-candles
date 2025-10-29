@@ -7,6 +7,9 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { Cart, CartItem, Product } from '@/types';
 import { calculateCartTotals } from '@/lib/cartUtils';
+import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
 
 interface CartContextType {
   cart: Cart;
@@ -31,6 +34,9 @@ const initialCart: Cart = {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cart, setCartState] = useState<Cart>(initialCart);
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations('cart');
+  const params = useParams();
+  const locale = (params?.locale as string) || 'en';
 
   // Initialize cart from localStorage
   useEffect(() => {
@@ -86,21 +92,39 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
-        return calculateCartTotals({ ...prevCart, items: updatedItems });
+        const newCart = calculateCartTotals({ ...prevCart, items: updatedItems });
+        const productName = locale === 'ar' ? product.nameAr : product.name;
+        toast.success(`${productName} ${t('addedQuantity')} (${existingItem.quantity + quantity}x)`, {
+          id: `add-${product.id}`,
+        });
+        return newCart;
       } else {
         const newItem: CartItem = { product, quantity };
         const updatedItems = [...prevCart.items, newItem];
-        return calculateCartTotals({ ...prevCart, items: updatedItems });
+        const newCart = calculateCartTotals({ ...prevCart, items: updatedItems });
+        const productName = locale === 'ar' ? product.nameAr : product.name;
+        toast.success(`${productName} ${t('added')}`, {
+          id: `add-${product.id}`,
+        });
+        return newCart;
       }
     });
-  }, []);
+  }, [t, locale]);
 
   const removeFromCart = useCallback((productId: string) => {
     setCartState((prevCart) => {
+      const itemToRemove = prevCart.items.find(item => item.product.id === productId);
       const updatedItems = prevCart.items.filter(item => item.product.id !== productId);
-      return calculateCartTotals({ ...prevCart, items: updatedItems });
+      const newCart = calculateCartTotals({ ...prevCart, items: updatedItems });
+      if (itemToRemove) {
+        const productName = locale === 'ar' ? itemToRemove.product.nameAr : itemToRemove.product.name;
+        toast.info(`${productName} ${t('removed')}`, {
+          id: `remove-${productId}`,
+        });
+      }
+      return newCart;
     });
-  }, []);
+  }, [t, locale]);
 
   const updateQuantity = useCallback((productId: string, quantity: number) => {
     if (quantity <= 0) {
@@ -109,14 +133,22 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     }
 
     setCartState((prevCart) => {
+      const itemToUpdate = prevCart.items.find(item => item.product.id === productId);
       const updatedItems = prevCart.items.map(item =>
         item.product.id === productId
           ? { ...item, quantity }
           : item
       );
-      return calculateCartTotals({ ...prevCart, items: updatedItems });
+      const newCart = calculateCartTotals({ ...prevCart, items: updatedItems });
+      if (itemToUpdate) {
+        const productName = locale === 'ar' ? itemToUpdate.product.nameAr : itemToUpdate.product.name;
+        toast.success(`${productName} ${t('quantityUpdated')} ${quantity}`, {
+          id: `update-${productId}`,
+        });
+      }
+      return newCart;
     });
-  }, [removeFromCart]);
+  }, [removeFromCart, t, locale]);
 
   const clearCart = useCallback(() => {
     setCartState(initialCart);

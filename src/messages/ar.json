@@ -49,7 +49,11 @@
     "subtotal": "المجموع الفرعي",
     "tax": "الضريبة",
     "shipping": "الشحن",
-    "total": "المجموع"
+    "total": "المجموع",
+    "added": "تمت إضافته إلى السلة",
+    "addedQuantity": "تمت إضافته إلى السلة",
+    "removed": "تم حذفه من السلة",
+    "quantityUpdated": "تم تحديث الكمية إلى"
   },
   "footer": {
     "allRightsReserved": "جميع الحقوق محفوظة",
