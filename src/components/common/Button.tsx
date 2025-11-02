@@ -14,6 +14,7 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button = ({
@@ -23,6 +24,7 @@ export const Button = ({
   className,
   onClick,
   disabled = false,
+  type = 'button',
 }: ButtonProps) => {
   const baseClasses = 'font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
   
@@ -40,6 +42,7 @@ export const Button = ({
 
   return (
     <button
+      type={type}
       className={cn(
         baseClasses,
         variantClasses[variant],

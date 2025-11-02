@@ -31,7 +31,7 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
   const isRTL = locale === 'ar';
 
   return (
@@ -41,7 +41,7 @@ export default async function RootLayout({
       >
         <ThemeProvider>
           <ToasterWrapper />
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider locale={locale} messages={messages}>
             <CartProvider>
               <ClientLayout>
                 {children}

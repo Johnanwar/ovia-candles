@@ -4,6 +4,7 @@
  */
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useCartContext } from '@/contexts/CartContext';
 import { CartItem } from './CartItem';
 import { CartSummary } from './CartSummary';
@@ -16,7 +17,7 @@ interface CartContentProps {
 
 export const CartContent = ({ locale }: CartContentProps) => {
   const { cart, clearCart } = useCartContext();
-  const isRTL = locale === 'ar';
+  const t = useTranslations('cart');
 
   if (cart.items.length === 0) {
     return (
@@ -37,14 +38,14 @@ export const CartContent = ({ locale }: CartContentProps) => {
           </svg>
         </div>
         <h3 className="text-xl font-semibold text-[var(--color-text)] mb-4">
-          {isRTL ? 'سلة التسوق فارغة' : 'Your cart is empty'}
+          {t('empty')}
         </h3>
         <p className="text-[var(--color-text-secondary)] mb-8">
-          {isRTL ? 'ابدأ التسوق لإضافة منتجات إلى سلة التسوق' : 'Start shopping to add products to your cart'}
+          {t('emptyMessage')}
         </p>
         <Link href={`/${locale}/products`}>
           <Button variant="primary" size="lg">
-            {isRTL ? 'ابدأ التسوق' : 'Start Shopping'}
+            {t('startShopping')}
           </Button>
         </Link>
       </div>
@@ -52,25 +53,25 @@ export const CartContent = ({ locale }: CartContentProps) => {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
       {/* Cart Items */}
       <div className="lg:col-span-2">
-        <div className="bg-[var(--color-background-secondary)] rounded-xl p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-[var(--color-text)]">
-              {isRTL ? 'العناصر في السلة' : 'Cart Items'}
+        <div className="bg-[var(--color-background-secondary)] rounded-xl p-4 sm:p-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mb-4 sm:mb-6">
+            <h2 className="text-lg sm:text-xl font-semibold text-[var(--color-text)]">
+              {t('cartItems')}
             </h2>
             <Button 
               variant="outline" 
               size="sm" 
               onClick={clearCart}
-              className="text-[var(--color-error)] hover:text-[var(--color-error)] hover:bg-[var(--color-error-light)]"
+              className="text-[var(--color-error)] hover:text-[var(--color-error)] hover:bg-[var(--color-error-light)] w-full sm:w-auto"
             >
-              {isRTL ? 'مسح الكل' : 'Clear All'}
+              {t('clearAll')}
             </Button>
           </div>
           
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {cart.items.map((item) => (
               <CartItem 
                 key={item.product.id} 

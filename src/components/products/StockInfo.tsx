@@ -14,7 +14,6 @@ interface StockInfoProps {
 
 export const StockInfo = ({ product, locale }: StockInfoProps) => {
   const t = useTranslations('product');
-  const isRTL = locale === 'ar';
 
   return (
     <div className="border-t border-[var(--color-border)] pt-6">
@@ -29,7 +28,7 @@ export const StockInfo = ({ product, locale }: StockInfoProps) => {
       </div>
       {product.inStock && (
         <p className="text-sm text-[var(--color-text-tertiary)] mt-1">
-          {isRTL ? `${product.stockQuantity} قطع متوفرة` : `${product.stockQuantity} items available`}
+          {t('itemsAvailable', { quantity: product.stockQuantity })}
         </p>
       )}
     </div>
